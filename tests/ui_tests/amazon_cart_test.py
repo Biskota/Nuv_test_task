@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome import webdriver
 
 from tests.ui_tests.pages.cart_page import *
 from tests.ui_tests.pages.main_page import *
@@ -59,4 +58,3 @@ class TestAmazonShoppingCart:
 @pytest.fixture()
 def tearDown(self):
     self.driver.quit()
-
