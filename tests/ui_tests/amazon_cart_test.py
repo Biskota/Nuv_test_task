@@ -19,6 +19,7 @@ def driver():
 
 class TestAmazonShoppingCart:
 
+    @allure.story('Add items to shopping cart')
     def test_shopping_cart(self, driver):
         logger2.info(f"Step 1: Open amazon main page and update location")
         go_to_page(driver, BASE_URL)

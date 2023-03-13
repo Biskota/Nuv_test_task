@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -5,6 +6,7 @@ from utils.locators import *
 from utils.test_data import *
 
 
+@allure.step('Update location')
 def update_location(driver):
     driver.find_element(*AmazonMainLocators.CHANGE_DELIVERY_LOCATION).click()
     driver.find_element(*AmazonMainLocators.ZIP_CODE_INPUT).send_keys(ZIP_CODE)
@@ -13,6 +15,7 @@ def update_location(driver):
     driver.refresh()
 
 
+@allure.step('Search items')
 def search_items(driver, search_query):
     search_bar = WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located((AmazonMainLocators.SEARCH_INPUT)))
