@@ -1,14 +1,12 @@
-import requests
-import json
 import pytest
 
-BASE_URL = "https://petstore.swagger.io/v2"
+from tests.api_tests.steps.api_steps import get_request, assert_for_json
+from utils.test_data import *
 
 
-@pytest.mark.parametrize("status_code", ["available", "pending", "sold"])
-def test_find_pets_by_status(status_code):
-    endpoint = f"{BASE_URL}/pet/findByStatus?status={status_code}"
+@pytest.mark.parametrize("status", [STATUS_PET_AVAILABLE, STATUS_PET_PENDING, STATUS_PET_SOLD])
+def test_find_pets_by_status(status):
+    response = get_request(API_URL, PET_STATUS_ENDPOINT, status, QUERY_PARAM_STATUS)
+    assert_for_json(status, response)
 
-    response = requests.get(endpoint)
-    assert response.status_code == 200
-    assert len(response.json()) > 0
+
